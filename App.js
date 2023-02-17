@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <View>
-        {/*  padding for inside space */}
-        <Text style={styles.dummyText}>Hello World</Text>
+    <View style={styles.appContainer}>
+      <View style={styles.flexDirection}>
+        <TextInput style={styles.textInput} placeholder='your course goal!'/>
+        <Button title='Add Goal'/>
       </View>
-      <Button title='tap me'/>
+    <View>
+      <Text>List of goals..</Text>
+    </View>
     </View>
   );
 } 
@@ -17,16 +18,18 @@ export default function App() {
 // we use StyleSheet because
 // besides auto-completeion, the stylesheet object also provides validations
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  appContainer: {
+    padding: 50,
   },
-  dummyText: {
-    margin:16,
-    padding:16,
-    borderWidth: 2,
-    borderColor: 'red',
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textInput: {
+    borderColor: '#cccccc',
+    borderWidth: 1,
+    width: '80%',
+    marginRight: 8,
+    padding:8,
   }
 });
