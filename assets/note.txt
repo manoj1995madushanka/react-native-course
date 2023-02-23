@@ -1,1 +1,3 @@
 ctrl+shift+p : command pallet
+
+react native does not inherited styles from parent to child tag
