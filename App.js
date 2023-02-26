@@ -17,7 +17,7 @@ export default function App() {
     //setCourseGoals([...courseGoals,enteredGoalText]);
     // above add goal to existing list courseGoals depend on previous courseGoals. In react we has better option
     // to do the same task
-    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, {text:enteredGoalText,key:Math.random().toString()}]);
+    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, {text:enteredGoalText,id:Math.random().toString()}]);
   };
 
 
@@ -48,6 +48,9 @@ export default function App() {
               <Text style={styles.goalText}>{itemData.item.text}</Text>
             </View>
             );
+          }}
+          keyExtractor = {(item,index)=>{
+            return item.id;
           }}
         />
       </View>
