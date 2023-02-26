@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 
@@ -17,7 +17,7 @@ export default function App() {
     //setCourseGoals([...courseGoals,enteredGoalText]);
     // above add goal to existing list courseGoals depend on previous courseGoals. In react we has better option
     // to do the same task
-    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, enteredGoalText]);
+    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, {text:enteredGoalText,key:Math.random().toString()}]);
   };
 
 
@@ -29,7 +29,9 @@ export default function App() {
         <Button title='Add Goal' onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
+        {/* scrollview is not suitable for large list because it is not support lazy fetch */}
+        {/* for large list we can use FlatList component */}
+        {/* <ScrollView>
           {courseGoals.map((goal, index) =>
           (
             <View key={index} style={styles.goalItem}>
@@ -37,7 +39,17 @@ export default function App() {
             </View>
           )
           )}
-        </ScrollView>
+        </ScrollView> */}
+
+        <FlatList data={courseGoals} renderItem={(itemData)=>{
+          //itemData.index;
+          return (
+           <View style={styles.goalItem}>
+              <Text style={styles.goalText}>{itemData.item.text}</Text>
+            </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
