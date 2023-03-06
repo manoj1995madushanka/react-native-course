@@ -11,7 +11,7 @@ function GoalInput(props) {
     };
 
     // use to share entered text to app component
-    function addGoalHandler(){
+    function addGoalHandler() {
         props.onAddGoal(enteredGoalText);
         setEnteredGoalText('');
     };
@@ -19,8 +19,8 @@ function GoalInput(props) {
     return (
         <View style={styles.inputContainer}>
             <TextInput style={styles.textInput} placeholder='your course goal!'
-                onChangeText={goalInputHandler} 
-                value={enteredGoalText}/>
+                onChangeText={goalInputHandler}
+                value={enteredGoalText} />
             <Button title='Add Goal' onPress={addGoalHandler} />
         </View>
     );
