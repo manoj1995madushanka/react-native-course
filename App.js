@@ -1,17 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
 export default function App() {
 
-  const [enteredGoalText, setEnteredGoalText] = useState('');
   const [courseGoals, setCourseGoals] = useState([]);
-
-  function goalInputHandler(enteredText) {
-    //console.log(enteredText);
-    setEnteredGoalText(enteredText);
-  };
 
   function addGoalHandler() {
     // console.log(enteredGoalText);
@@ -24,6 +19,8 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+
+      <GoalInput onAddGoal={addGoalHandler} />
 
       <View style={styles.goalsContainer}>
         {/* scrollview is not suitable for large list because it is not support lazy fetch */}
