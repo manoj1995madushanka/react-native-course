@@ -8,13 +8,20 @@ function GoalInput(props) {
     function goalInputHandler(enteredText) {
         //console.log(enteredText);
         setEnteredGoalText(enteredText);
-      };
+    };
+
+    // use to share entered text to app component
+    function addGoalHandler(){
+        props.onAddGoal(enteredGoalText);
+        setEnteredGoalText('');
+    };
 
     return (
         <View style={styles.inputContainer}>
             <TextInput style={styles.textInput} placeholder='your course goal!'
-                onChangeText={goalInputHandler} />
-            <Button title='Add Goal' onPress={props.onAddGoal} />
+                onChangeText={goalInputHandler} 
+                value={enteredGoalText}/>
+            <Button title='Add Goal' onPress={addGoalHandler} />
         </View>
     );
 };

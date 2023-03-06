@@ -8,7 +8,7 @@ export default function App() {
 
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function addGoalHandler() {
+  function addGoalHandler(enteredGoalText) {
     // console.log(enteredGoalText);
     //setCourseGoals([...courseGoals,enteredGoalText]);
     // above add goal to existing list courseGoals depend on previous courseGoals. In react we has better option
