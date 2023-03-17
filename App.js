@@ -15,6 +15,8 @@ export default function App() {
     // above add goal to existing list courseGoals depend on previous courseGoals. In react we has better option
     // to do the same task
     setCourseGoals((currentCourseGoals) => [...currentCourseGoals, { text: enteredGoalText, id: Math.random().toString() }]);
+
+    endAddGoalHandler();
   };
 
   function deleteGoalHandler(id){
@@ -23,8 +25,14 @@ export default function App() {
     });
   };
 
+  // method for invoke goal input view
   function startAddGoalHandler(){
       setModalIsVisible(true);
+  }
+
+  // method that closes goal input view
+  function endAddGoalHandler(){
+    setModalIsVisible(false);
   }
 
 
@@ -33,7 +41,7 @@ export default function App() {
 
       <Button title='Add New Goal' color="#5e0acc" onPress={startAddGoalHandler}/>
       {/*{modalIsVisible && <GoalInput onAddGoal={addGoalHandler} />} */}
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler}></GoalInput>
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler}></GoalInput>
 
       <View style={styles.goalsContainer}>
         {/* scrollview is not suitable for large list because it is not support lazy fetch */}
