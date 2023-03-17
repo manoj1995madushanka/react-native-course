@@ -7,6 +7,7 @@ import GoalItem from './components/GoalItem';
 export default function App() {
 
   const [courseGoals, setCourseGoals] = useState([]);
+  const [modalIsVisible,setModalIsVisible] = useState(false);
 
   function addGoalHandler(enteredGoalText) {
     // console.log(enteredGoalText);
@@ -22,11 +23,17 @@ export default function App() {
     });
   };
 
+  function startAddGoalHandler(){
+      setModalIsVisible(true);
+  }
+
 
   return (
     <View style={styles.appContainer}>
 
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button title='Add New Goal' color="#5e0acc" onPress={startAddGoalHandler}/>
+      {/*{modalIsVisible && <GoalInput onAddGoal={addGoalHandler} />} */}
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler}></GoalInput>
 
       <View style={styles.goalsContainer}>
         {/* scrollview is not suitable for large list because it is not support lazy fetch */}
