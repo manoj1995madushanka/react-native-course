@@ -7,7 +7,7 @@ import GoalItem from './components/GoalItem';
 export default function App() {
 
   const [courseGoals, setCourseGoals] = useState([]);
-  const [modalIsVisible,setModalIsVisible] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function addGoalHandler(enteredGoalText) {
     // console.log(enteredGoalText);
@@ -19,53 +19,58 @@ export default function App() {
     endAddGoalHandler();
   };
 
-  function deleteGoalHandler(id){
-    setCourseGoals(currentCourseGoals=>{
-      return currentCourseGoals.filter((goal)=>goal.id!==id);
+  function deleteGoalHandler(id) {
+    setCourseGoals(currentCourseGoals => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
     });
   };
 
   // method for invoke goal input view
-  function startAddGoalHandler(){
-      setModalIsVisible(true);
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
   }
 
   // method that closes goal input view
-  function endAddGoalHandler(){
+  function endAddGoalHandler() {
     setModalIsVisible(false);
   }
 
 
   return (
-    <View style={styles.appContainer}>
 
-      <Button title='Add New Goal' color="#5e0acc" onPress={startAddGoalHandler}/>
-      {/*{modalIsVisible && <GoalInput onAddGoal={addGoalHandler} />} */}
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler}></GoalInput>
+    <>
+      <StatusBar style='light'/>
+      <View style={styles.appContainer}>
 
-      <View style={styles.goalsContainer}>
-        {/* scrollview is not suitable for large list because it is not support lazy fetch */}
-        {/* for large list we can use FlatList component */}
-        {/* <ScrollView>
-          {courseGoals.map((goal, index) =>
-          (
-            <View key={index} style={styles.goalItem}>
-              <Text style={styles.goalText}>{goal}</Text>
-            </View>
-          )
-          )}
-        </ScrollView> */}
+        <Button title='Add New Goal' color="#a065ec" onPress={startAddGoalHandler} />
+        {/*{modalIsVisible && <GoalInput onAddGoal={addGoalHandler} />} */}
+        <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler}></GoalInput>
 
-        <FlatList data={courseGoals} renderItem={(itemData) => {
-          //itemData.index;
-          return <GoalItem text={itemData.item.text} id={itemData.item.id} onDeleteItem={deleteGoalHandler}/>;
-        }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-        />
+        <View style={styles.goalsContainer}>
+          {/* scrollview is not suitable for large list because it is not support lazy fetch */}
+          {/* for large list we can use FlatList component */}
+          {/* <ScrollView>
+    {courseGoals.map((goal, index) =>
+    (
+      <View key={index} style={styles.goalItem}>
+        <Text style={styles.goalText}>{goal}</Text>
       </View>
-    </View>
+    )
+    )}
+  </ScrollView> */}
+
+          <FlatList data={courseGoals} renderItem={(itemData) => {
+            //itemData.index;
+            return <GoalItem text={itemData.item.text} id={itemData.item.id} onDeleteItem={deleteGoalHandler} />;
+          }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </View>
+      </View>
+    </>
+
   );
 }
 
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 50,
     paddingHorizontal: 16,
+    backgroundColor: '#1e085a',
   },
   goalsContainer: {
     flex: 5
